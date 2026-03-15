@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/styles/dashboard.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo">Jagrati</h1>
+        <div class="header-buttons">
+            <button class="dashboard-btn" style="background-color: darkorange; color: white">Dashboard</button>
+            <button class="signout-btn"><a href="/user/logout" style="text-decoration: none; color: black">Sign Out</a></button>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile-card">
+                <img src="/images/profile.png" alt="Profile" class="profile-pic">
+                <% if (locals.volunteer) { %>
+                    <h2><%= volunteer[0].name %></h2>
+                    <p><%= volunteer[0].roll_no.toLowerCase() + "@iiitdmj.ac.in" %></p>
+                <% } %>
+                <span class="role">Volunteer</span>
+            </div>
+        </div>
+            <div class="tables">
+                <div class="table-container" style="width: 350px;">
+                    <h2>Your Schedule</h2>
+                        <table border="1">
+                        <tr>
+                            <th>Days</th>
+                            <th>Subject</th>
+                        </tr>
+                        <% volunteer.forEach(schedule => { %>
+                            <tr>
+                                <td><%= schedule.day %></td>
+                                <td><%= schedule.subject %></td>
+                            </tr>
+                        <% }) %>
+
+                    </table>
+                </div>
+        </div>
+    </div>
+</body>
+</html>

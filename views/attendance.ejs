@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Document</title>
+    <style>
+        div li{
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="/user/attendance" method="post" style="width: 40vw;">
+    <% results.forEach(element => { %>
+        <div style="display: flex; justify-content: space-between;">
+            <li><%= element.roll_no  %></li>
+            <li><%= element.name %></li>
+            <div>
+                <label for="present">P</label>
+                <input type="radio" name="<%= element.roll_no %>" value="P">
+                <label for="absent" style="margin-left: 20px;">A</label>
+                <input type="radio" name="<%= element.roll_no %>" value="A">
+            </div>
+            </div>
+            <% }) %>
+            <button type="submit">Button</button>
+        </form>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/styles/admin.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">Jagrati</h1>
+            <div class="header-buttons">
+                <button class="dashboard-btn" style="background-color: darkorange; color: white">Dashboard</a></button>
+                <button class="signout-btn"><a href="/user/logout" style="text-decoration: none; color: black">Sign Out</a></button>
+            </div>
+        </header>
+        <main>
+            <div class="sidebar">
+                <div class="profile-card">
+                    <img src="/images/profile.png" alt="Profile" class="profile-pic">
+                    <h2>
+                        <%= admin[0].name %>
+                    </h2>
+                    <p>
+                        <%= admin[0].roll_no.toLowerCase() + "@iiitdmj.ac.in" %>
+                    </p>
+                    <span class="role">Admin</span>
+                </div>
+                <div style="margin-top: 30px; margin-left: 60px;">
+                    <a class="submit-attendance" style="text-decoration: none;" href="/show">Show attendance</a>
+                </div>
+                <div style="margin-top: 30px; margin-left: 60px;">
+                    <a class="submit-attendance" style="text-decoration: none;" href="/add-student">Add New Student</a>
+                </div>
+                <div style="margin-top: 30px; margin-left: 60px;">
+                    <a class="submit-attendance" style="text-decoration: none;"  href="/add-schedule">Add Volunteer Schedule</a>
+                </div>
+                </div>
+            <div class="content">
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="attendance">Attendance</button>
+                    <button class="tab-button" data-tab="volunteers">Volunteers</button>
+                </div>
+
+                <!-- Attendance Tab -->
+                <div id="attendance" class="tab-content active">
+                    <div class="attendance-table">
+                        <form action="/user/attendance" method="post">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>S.no</th>
+                                        <th>Roll Number</th>
+                                        <th>Name</th>
+                                        <th>Present</th>
+                                        <th>Absent</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% students.forEach((student, index)=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= ++index %>
+                                            </td>
+                                            <td>
+                                                <%= student.roll_no %>
+                                            </td>
+                                            <td>
+                                                <%= student.fname %>
+                                                    <%= student.mname %>
+                                                        <%= student.lname %>
+                                            </td>
+                                            <td><input type="radio" name=<%=student.roll_no %> value="P"></td>
+                                            <td><input type="radio" name=<%=student.roll_no %> value="A"></td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="submit-attendance">Save Attendance</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Volunteers Tab -->
+                <div id="volunteers" class="tab-content">
+                    <div class="attendance-table">
+                        <h3>Volunteer List</h3>
+                        <table border="1">
+                            <tr>
+                                <th>Roll Number</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Village Name</th>
+                            </tr>
+                            
+                            <% volunteer.forEach(volunteer=> { %>
+                           <tr>
+                                <td><%= volunteer.name %> </td>
+                                <td><%= volunteer.roll_no %> </td>
+                                <td><%= volunteer.roll_no.toLowerCase() + "@iiitdmj.ac.in" %> </td>
+                                <td>
+                                    <form method="get" action="/user/view-detail" style="margin: 0;">
+                                        <input type="hidden" name="roll" value="<%= volunteer.roll_no %>">
+                                        <button type="submit">View Details</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }) %>
+                            </table>
+                        <ul>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabButtons = document.querySelectorAll(".tab-button");
+            const tabContents = document.querySelectorAll(".tab-content");
+
+            tabButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    // Deactivate all tabs and contents
+                    tabButtons.forEach(btn => btn.classList.remove("active"));
+                    tabContents.forEach(content => content.classList.remove("active"));
+
+                    // Activate the clicked tab and corresponding content
+                    button.classList.add("active");
+                    document.getElementById(button.dataset.tab).classList.add("active");
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

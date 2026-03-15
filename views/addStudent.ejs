@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="images">
+            <img src="/images/1.jpeg" alt="">
+            <img src="/images/2.png" alt="">
+            <img src="/images/3.png" alt="">
+            <img src="/images/4.jpeg" alt="">
+            <img src="/images/5.png" alt="">
+            <img src="/images/6.jpeg" alt="">
+            <img src="/images/7.jpeg" alt="">
+            <img src="/images/8.png" alt="">
+            <img src="/images/9.png" alt="">
+            <img src="/images/10.jpeg" alt="">
+        </div>
+        <div class="main">
+            <div class="msg">
+                <h1>WELCOME BACK<br><span><img src="/images/11.jpeg" alt="" style="width: 400px; height: 170px; border: none;"></span></h1>
+                <p>"Spreading knowledge is a greater prosperity than just gaining it!"</p>
+                <br>
+            </div>
+            <div class="box">
+                <form action="/user/add-student" method="post">
+                    <h1>Add Student</h1>
+                    <div>
+                        <label for="">Standard</label>
+                        <input type="number" name="std" required>
+                    </div>
+                    <div>
+                        <label for="">First Name</label>
+                        <input type="text" name="fname" required>
+                    </div>
+                    <div>
+                        <label for="">Middle Name</label>
+                        <input type="text" name="mname">
+                    </div>
+                    <div>
+                        <label for="">Last Name</label>
+                        <input type="text" name="lname" required>
+                    </div>
+                    <div>
+                        <label for="">Village</label>
+                        <input type="text" name="village" required>
+                    </div>
+                    <div>
+                        <button class="login" type="submit">Add Student</button>
+                    </div>
+                </form>
+            </div>
+        </div>        
+    </div>
+</body>
+</html>
